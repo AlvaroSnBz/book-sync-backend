@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import BookModel, { Book } from '@backend/src/models/Book';
+import VolumeModel, { Volume } from '@backend/src/models/Volume';
 
 export const getBook = async (req: Request, res: Response) => {
   const { id } = req.query;
-  const existingBook = await BookModel.findOne({ id: id as string });
+  const existingBook = await VolumeModel.findOne({ id: id as string });
   if (existingBook) {
     res.set('Content-Type', 'text/html');
     res.send(existingBook);
@@ -13,8 +13,8 @@ export const getBook = async (req: Request, res: Response) => {
 };
 
 export const setBookStatus = async (req: Request, res: Response) => {
-  const book: Book = req.body;
-  const existingBook = await BookModel.findOne({ id: book.id });
+  const book: Volume = req.body;
+  const existingBook = await VolumeModel.findOne({ id: book.id });
   if (existingBook) {
     existingBook.status = book.status;
     await existingBook
@@ -22,7 +22,7 @@ export const setBookStatus = async (req: Request, res: Response) => {
       .then((result) => console.log(result))
       .catch((error) => console.log(error));
   } else {
-    BookModel.create(book)
+    VolumeModel.create(book)
       .then((result) => console.log(result))
       .catch((error) => console.log(error));
   }
@@ -34,7 +34,7 @@ export const deleteBookStatus = async (req: Request, res: Response) => {
     ? req.query.id[0]
     : (req.query.id as string | undefined);
 
-  BookModel.deleteOne({ id })
+  VolumeModel.deleteOne({ id })
     .then((result) => console.log(result))
     .catch((error) => console.log(error));
   res.end();
