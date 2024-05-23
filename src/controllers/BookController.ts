@@ -12,6 +12,11 @@ export const getBook = async (req: Request, res: Response) => {
   }
 };
 
+export const getBooks = async (req: Request, res: Response) => {
+  const volumes: Volume[] = await VolumeModel.find();
+  res.send(volumes);
+};
+
 export const setBookStatus = async (req: Request, res: Response) => {
   const book: Volume = req.body;
   const existingBook = await VolumeModel.findOne({ id: book.id });
