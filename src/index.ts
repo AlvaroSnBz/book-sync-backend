@@ -1,7 +1,7 @@
 import express, { json } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import bookRouter from '@backend/src/routes/BookRoutes';
+import bookRouter from './routes/BookRoutes';
 
 dotenv.config();
 

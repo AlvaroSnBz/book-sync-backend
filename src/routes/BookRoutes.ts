@@ -1,10 +1,10 @@
 import express from 'express';
 import {
-  deleteBookStatus,
   getBook,
   getBooks,
   setBookStatus,
-} from '@backend/src/controllers/BookController';
+  deleteBookStatus,
+} from '../controllers/BookController';
 
 const bookRouter = express.Router();
 

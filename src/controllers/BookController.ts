@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import VolumeModel, { Volume } from '@backend/src/models/Volume';
+import VolumeModel, { Volume } from '../models/Volume';
 
 export const getBook = async (req: Request, res: Response) => {
   const { id } = req.query;
