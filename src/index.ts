@@ -19,3 +19,4 @@ app.listen(PORT, () => {
 });
 
 app.use('/book', bookRouter);
+app.use(express.static('dist'));
