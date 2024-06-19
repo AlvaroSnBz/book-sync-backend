@@ -2,6 +2,7 @@ import express, { json } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import bookRouter from './routes/BookRoutes';
+import loginRouter from './routes/LoginRoute';
 
 dotenv.config();
 
@@ -19,4 +20,5 @@ app.listen(PORT, () => {
 });
 
 app.use('/book', bookRouter);
+app.use('/login', loginRouter);
 app.use(express.static('dist'));
