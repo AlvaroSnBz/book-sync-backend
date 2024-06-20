@@ -23,6 +23,7 @@ export interface Volume {
   id: string;
   volumeInfo: VolumeInfo;
   status: BookStatus | undefined;
+  username: string;
 }
 
 const volumeSchema = new mongoose.Schema<Volume>({
@@ -52,6 +53,10 @@ const volumeSchema = new mongoose.Schema<Volume>({
   status: {
     type: String,
     required: [true, 'Please enter the status of the book'],
+  },
+  username: {
+    type: String,
+    required: [true, 'Please enter the username associated'],
   },
 });
 

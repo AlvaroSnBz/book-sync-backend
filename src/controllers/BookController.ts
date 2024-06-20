@@ -13,7 +13,10 @@ export const getBook = async (req: Request, res: Response) => {
 };
 
 export const getBooks = async (req: Request, res: Response) => {
-  const volumes: Volume[] = await VolumeModel.find();
+  const username = Array.isArray(req.query.username)
+    ? req.query.username[1]
+    : (req.query.username as string | undefined);
+  const volumes: Volume[] = await VolumeModel.find({ username });
   res.send(volumes);
 };
 
