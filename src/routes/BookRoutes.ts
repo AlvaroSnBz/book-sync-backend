@@ -1,15 +1,17 @@
 import express from 'express';
 import {
   getBook,
-  getBooks,
+  getBooksByUsername,
   setBookStatus,
   deleteBookStatus,
+  getBooksByStatus,
 } from '../controllers/BookController';
 
 const bookRouter = express.Router();
 
 bookRouter.get('/getBook', getBook);
-bookRouter.get('/getBooks', getBooks);
+bookRouter.get('/getBooksByUsername', getBooksByUsername);
+bookRouter.get('/getBooksByStatus', getBooksByStatus);
 bookRouter.post('/setBookStatus', setBookStatus);
 bookRouter.delete('/deleteBookStatus', deleteBookStatus);
 

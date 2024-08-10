@@ -12,12 +12,31 @@ export const getBook = async (req: Request, res: Response) => {
   }
 };
 
-export const getBooks = async (req: Request, res: Response) => {
+export const getBooksByUsername = async (req: Request, res: Response) => {
   const username = Array.isArray(req.query.username)
     ? req.query.username[1]
     : (req.query.username as string | undefined);
   const volumes: Volume[] = await VolumeModel.find({ username });
   res.send(volumes);
+};
+
+export const getBooksByStatus = async (req: Request, res: Response) => {
+  const status = Array.isArray(req.query.status)
+    ? req.query.status[1]
+    : (req.query.status as string | undefined);
+  const username = Array.isArray(req.query.username)
+    ? req.query.username[1]
+    : (req.query.username as string | undefined);
+  if (status !== '' && username !== '') {
+    const volumes: Volume[] = await VolumeModel.find({
+      status,
+      username,
+    });
+    res.send(volumes);
+  } else if (username !== '') {
+    const volumes: Volume[] = await VolumeModel.find({ username });
+    res.send(volumes);
+  }
 };
 
 export const setBookStatus = async (req: Request, res: Response) => {
