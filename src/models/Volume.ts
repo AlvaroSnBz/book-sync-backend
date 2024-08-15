@@ -20,10 +20,13 @@ export interface VolumeInfo {
 }
 
 export interface Volume {
+  _id?: string;
   id: string;
   volumeInfo: VolumeInfo;
   status: BookStatus | undefined;
   username: string;
+  startDate: string;
+  finishDate: string;
 }
 
 const volumeSchema = new mongoose.Schema<Volume>({
@@ -50,6 +53,8 @@ const volumeSchema = new mongoose.Schema<Volume>({
       },
     },
   },
+  startDate: String,
+  finishDate: String,
   status: {
     type: String,
     required: [true, 'Please enter the status of the book'],
