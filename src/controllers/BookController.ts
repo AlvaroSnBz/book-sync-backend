@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Request, Response } from 'express';
 import VolumeModel, { Volume } from '../models/Volume';
 
 export const getBook = async (req: Request, res: Response) => {
   const { id } = req.query;
-  const existingBook = await VolumeModel.findOne({ id: id as string });
+  const existingBook = await VolumeModel.findById(id);
   if (existingBook) {
     res.set('Content-Type', 'text/html');
     res.send(existingBook);
@@ -41,7 +42,7 @@ export const getBooksByStatus = async (req: Request, res: Response) => {
 
 export const setBookStatus = async (req: Request, res: Response) => {
   const book: Volume = req.body;
-  const existingBook = await VolumeModel.findOne({ id: book.id });
+  const existingBook = await VolumeModel.findById(book._id);
   if (existingBook) {
     existingBook.status = book.status;
     await existingBook
@@ -72,7 +73,7 @@ export const deleteBookStatus = async (req: Request, res: Response) => {
     ? req.query.id[0]
     : (req.query.id as string | undefined);
 
-  VolumeModel.deleteOne({ id })
+  VolumeModel.findByIdAndDelete(id)
     .then((result) => console.log(result))
     .catch((error) => console.log(error));
   res.end();
