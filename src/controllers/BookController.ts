@@ -56,6 +56,17 @@ export const setBookStatus = async (req: Request, res: Response) => {
   res.end();
 };
 
+export const updateBook = async (req: Request, res: Response) => {
+  const book: Volume = req.body;
+  const existingBook = await VolumeModel.findOne({ _id: book._id });
+  if (existingBook) {
+    await VolumeModel.findByIdAndUpdate(book._id, book, { new: true })
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
+  }
+  res.end();
+};
+
 export const deleteBookStatus = async (req: Request, res: Response) => {
   const id = Array.isArray(req.query.id)
     ? req.query.id[0]
