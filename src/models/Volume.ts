@@ -47,6 +47,10 @@ const volumeSchema = new mongoose.Schema<Volume>({
       type: [String],
       required: true,
     },
+    description: {
+      type: String,
+      required: false,
+    },
     imageLinks: {
       thumbnail: {
         type: String,
